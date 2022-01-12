@@ -12,7 +12,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import sa.edu.tuwaiq.project_01.R
 import sa.edu.tuwaiq.project_01.databinding.FragmentLoginBinding
 import sa.edu.tuwaiq.project_01.util.BottomAppBarHelper
-
 class LoginFragment : Fragment() {
     lateinit var binding: FragmentLoginBinding
     override fun onCreateView(
@@ -30,6 +29,7 @@ class LoginFragment : Fragment() {
         binding.signupTextView.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
         }
+
 
         // Hide the nav bar & the floating action bottom
         BottomAppBarHelper.get().hide()

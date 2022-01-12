@@ -32,6 +32,8 @@ class SignUpFragment : Fragment() {
             findNavController().navigate(R.id.action_signUpFragment_to_loginFragment)
         }
 
+
+
         // Hide the nav bar
         BottomAppBarHelper.get().hide()
     }
