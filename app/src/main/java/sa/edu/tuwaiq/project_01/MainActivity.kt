@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navController = navHostFragment.navController
 
-        this.setupActionBarWithNavController(navController)
+        setupActionBarWithNavController(navController)
 
         // to link the nav bottom with nav host
         NavigationUI.setupWithNavController(binding.bottomNavigationView, navController)

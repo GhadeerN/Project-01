@@ -25,6 +25,7 @@
         android:id="@+id/addPost_floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:backgroundTint="@color/light_blue"
         app:layout_anchor="@id/bottomAppBar"
         app:srcCompat="@drawable/ic_outline_add_box_24" />
 

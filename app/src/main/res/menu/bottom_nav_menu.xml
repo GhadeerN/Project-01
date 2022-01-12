@@ -7,7 +7,7 @@
         android:title="@string/home" />
     <item
         android:id="@+id/placeholder"
-        android:title=" " />
+        android:title="" />
     <item
         android:id="@+id/profileFragment"
         android:icon="@drawable/ic_outline_account_circle_24"
