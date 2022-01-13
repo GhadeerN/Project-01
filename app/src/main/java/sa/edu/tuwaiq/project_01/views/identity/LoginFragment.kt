@@ -64,9 +64,9 @@ class LoginFragment : Fragment() {
 
         // TODO For test purposes ONLY
         // Login Button
-        binding.loginButton.setOnClickListener {
-            checkOfText()
-        }
+//        binding.loginButton.setOnClickListener {
+//            checkOfText()
+//        }
     }
 
 

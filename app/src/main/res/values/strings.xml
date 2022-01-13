@@ -17,4 +17,8 @@
     <string name="question_already_have_account">Already Have an Account?</string>
     <string name="home">Home</string>
     <string name="profile">Profile</string>
+    <string name="whats_happening_msg">What\'s happining?</string>
+    <string name="supporting_text">You don\'t have content to post yet\nPlease create one before posting</string>
+    <string name="ok">OK</string>
+    <string name="post">Post</string>
 </resources>

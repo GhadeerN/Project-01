@@ -2,6 +2,7 @@ package sa.edu.tuwaiq.project_01
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.net.Uri
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -12,22 +13,27 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.R
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import sa.edu.tuwaiq.project_01.model.Post
 import sa.edu.tuwaiq.project_01.model.Users
 
-var fireStore : FirebaseFirestore = FirebaseFirestore.getInstance()
+var fireStore: FirebaseFirestore = FirebaseFirestore.getInstance()
+
 class Repo(val context: Context) {
+    private val database = FirebaseFirestore.getInstance()
+    private val imageRef = Firebase.storage.reference
 
-
-
-
+    // Collections
+    private val postCollection = database.collection("Posts")
 
 
     //logIn
-    fun logInAuthentication(emailSignIn: String,passwordSignIn: String,view: View) {
+    fun logInAuthentication(emailSignIn: String, passwordSignIn: String, view: View) {
 
         val email: String = emailSignIn.toString().trim { it <= ' ' }
         val password: String = passwordSignIn.toString().trim { it <= ' ' }
@@ -35,18 +41,22 @@ class Repo(val context: Context) {
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Navigation.findNavController(view).navigate(sa.edu.tuwaiq.project_01.R.id.action_loginFragment_to_timeLineFragment)
+                    Navigation.findNavController(view)
+                        .navigate(sa.edu.tuwaiq.project_01.R.id.action_loginFragment_to_timeLineFragment)
                 } else {
-                    Toast.makeText(view.context, task.exception!!.message.toString(), Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        view.context,
+                        task.exception!!.message.toString(),
+                        Toast.LENGTH_LONG
+                    ).show()
 
                 }
             }
     }
 
 
-
     //class Firebase
-    fun signUpAuthentication(email: String, password: String,userName: String,view: View) {
+    fun signUpAuthentication(email: String, password: String, userName: String, view: View) {
 
         //delete
         val email: String = email.toString().trim { it <= ' ' }
@@ -57,7 +67,7 @@ class Repo(val context: Context) {
 
                 if (task.isSuccessful) {
 
-                    userInfo("${email}", "${userName}",view)
+                    userInfo("${email}", "${userName}", view)
 
                 } else {
 
@@ -73,7 +83,7 @@ class Repo(val context: Context) {
 
 
     //class
-    fun userInfo(email: String, userName: String,view: View) {
+    fun userInfo(email: String, userName: String, view: View) {
 
         val userId = FirebaseAuth.getInstance().currentUser?.uid
 
@@ -82,25 +92,28 @@ class Repo(val context: Context) {
         user.userEmail = email
         user.userName = userName
 
-        createUserFirestore(user,view)
+        createUserFirestore(user, view)
     }
 
 
     //firebase class
     @SuppressLint("LongLogTag")
-    fun createUserFirestore(user: Users,view: View) = CoroutineScope(Dispatchers.IO).launch {
+    fun createUserFirestore(user: Users, view: View) = CoroutineScope(Dispatchers.IO).launch {
 
         try {
             val userRef = Firebase.firestore.collection("Users")
             //-----------UID------------------------
 
-            userRef.document("${user.userID}").set(user).addOnCompleteListener { it
-                when {it.isSuccessful -> {
+            userRef.document("${user.userID}").set(user).addOnCompleteListener {
+                it
+                when {
+                    it.isSuccessful -> {
 
-                    Navigation.findNavController(view).navigate(sa.edu.tuwaiq.project_01.R.id.action_signUpFragment_to_loginFragment)
+                        Navigation.findNavController(view)
+                            .navigate(sa.edu.tuwaiq.project_01.R.id.action_signUpFragment_to_loginFragment)
 
-                    Toast.makeText(context, "Welcome", Toast.LENGTH_LONG).show()
-                }
+                        Toast.makeText(context, "Welcome", Toast.LENGTH_LONG).show()
+                    }
                     else -> {
                         Toast.makeText(context, "is not Successful", Toast.LENGTH_LONG)
                             .show()
@@ -114,6 +127,14 @@ class Repo(val context: Context) {
             }
         }
     }
+
+    // Posts ---------------------------------------------------------------------------------------
+    fun addPost(post: Post) = postCollection.document().set(post)
+
+    fun uploadPostImage(image: Uri, fileName: String) =
+        imageRef.child("imagesPosts/$fileName").putFile(image)
+
+    suspend fun getPosts() = postCollection.get().await()
 /*
     fun signUpAuthentication(emailSignIn: String,userName: String,view: View) {
 
