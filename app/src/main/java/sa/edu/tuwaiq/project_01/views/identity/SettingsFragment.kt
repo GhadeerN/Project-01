@@ -147,7 +147,8 @@ class SettingsFragment : Fragment() {
         val editor: SharedPreferences.Editor = sharedPreferences.edit()
         editor.clear()
         editor.apply()
-        findNavController().navigate(R.id.loginFragment)
+
+        findNavController().navigate(R.id.action_settingsFragment_to_loginFragment)
         FirebaseAuth.getInstance().signOut()
     }
 

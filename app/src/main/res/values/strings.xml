@@ -21,4 +21,6 @@
     <string name="supporting_text">You don\'t have content to post yet\nPlease create one before posting</string>
     <string name="ok">OK</string>
     <string name="post">Post</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

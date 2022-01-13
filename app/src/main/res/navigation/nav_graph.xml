@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/splashScreen2Fragment">
 
     <fragment
         android:id="@+id/timeLineFragment"
@@ -43,5 +43,21 @@
         android:id="@+id/settingsFragment"
         android:name="sa.edu.tuwaiq.project_01.views.identity.SettingsFragment"
         android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/nav_graph" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashScreen2Fragment"
+        android:name="sa.edu.tuwaiq.project_01.SplashScreen2Fragment"
+        android:label="fragment_splash_screen2"
+        tools:layout="@layout/fragment_splash_screen2" >
+        <action
+            android:id="@+id/action_splashScreen2Fragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="false" />
+    </fragment>
 </navigation>
