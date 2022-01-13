@@ -134,6 +134,9 @@ class SettingsFragment : Fragment() {
         val config: Configuration = resources!!.configuration
         config.setLocale(locale)
         resources.updateConfiguration(config, resources.displayMetrics)
+        val editor: SharedPreferences.Editor = sharedPreferences.edit()
+        editor.putString("preference", "${locale.toString()}")
+        editor.apply()
         ActivityCompat.recreate(context as Activity)
 
     }
