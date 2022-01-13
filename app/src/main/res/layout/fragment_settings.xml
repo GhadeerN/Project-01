@@ -22,24 +22,22 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-
             <TextView
                 android:id="@+id/setting_id"
-
                 style="@style/TextAppearance.AppCompat.Widget.PopupMenu.Header"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+
+                android:layout_marginTop="10dp"
+
 
                 android:text="Settings"
 
-
                 android:textSize="35sp"
-
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.156"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider6"
                 tools:ignore="MissingConstraints" />
 
             <androidx.cardview.widget.CardView
@@ -49,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:layout_marginTop="84dp"
-                android:backgroundTint="#1597E5"
+                android:backgroundTint="#6F7E87"
                 android:orientation="vertical"
                 app:cardCornerRadius="35sp"
                 app:cardElevation="35sp"
@@ -85,7 +83,6 @@
                         android:text=" Change Password"
                         android:textColor="@color/white"
                         android:textSize="16sp"
-                        app:drawableEndCompat="@drawable/ic_baseline_arrow_drop_up_24"
                         app:drawableStartCompat="@drawable/ic_baseline_security_24" />
 
                     <View
@@ -137,44 +134,45 @@
                 android:id="@+id/divider6"
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="20dp"
                 android:background="?android:attr/listDivider"
-                app:layout_constraintTop_toBottomOf="@+id/cardSettings" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardUserProfile" />
 
             <TextView
-                android:id="@+id/aboutApp"
+                android:id="@+id/userProfile"
                 style="@style/TextAppearance.AppCompat.Widget.PopupMenu.Header"
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="About App"
+                android:layout_marginTop="15dp"
+                android:text="Profile"
                 android:textSize="35sp"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.192"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider6"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="MissingConstraints" />
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardAboutApp"
+                android:id="@+id/cardUserProfile"
 
+                android:backgroundTint="#6F7E87"
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:layout_marginTop="84dp"
-                android:backgroundTint="#1597E5"
                 android:orientation="vertical"
-                android:visibility="gone"
-                app:cardCornerRadius="35sp"
+                android:visibility="visible"
                 app:cardElevation="35sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.6"
                 app:layout_constraintStart_toStartOf="parent"
 
-                app:layout_constraintTop_toBottomOf="@+id/aboutApp"
+                app:layout_constraintTop_toBottomOf="@+id/userProfile"
                 tools:ignore="MissingConstraints">
 
 
@@ -192,14 +190,13 @@
 
 
                     <TextView
-                        android:id="@+id/aboutUs_id"
+                        android:id="@+id/userName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
-                        android:text=" aboutus"
-                        android:textColor="#FFFFFF"
+                        android:text=" "
                         android:textSize="16sp"
-                        app:drawableStartCompat="@drawable/ic_baseline_device_unknown_24" />
+                        app:drawableStartCompat="@drawable/ic_person" />
 
 
                 </LinearLayout>
@@ -214,14 +211,11 @@
 
                 android:layout_height="match_parent"
                 android:layout_margin="30sp"
-                android:layout_marginTop="50dp"
-                android:layout_marginBottom="50dp"
                 android:gravity="center"
                 android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardAboutApp"
+                app:layout_constraintTop_toBottomOf="@+id/cardSettings"
                 tools:ignore="MissingConstraints">
 
                 <Button
@@ -236,6 +230,7 @@
                     android:text="sign_out"
                     android:textColor="#FF0000"
 
+                    android:layout_marginBottom="30sp"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 

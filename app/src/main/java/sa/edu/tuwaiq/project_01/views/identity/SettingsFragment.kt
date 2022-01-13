@@ -68,6 +68,9 @@ class SettingsFragment : Fragment() {
             sharedPreferences.edit().putBoolean("MODE",isChecked).apply()
         }
 
+        binding.cardUserProfile.setOnClickListener {
+            findNavController().navigate(R.id.profileFragment)
+        }
 
 
 
