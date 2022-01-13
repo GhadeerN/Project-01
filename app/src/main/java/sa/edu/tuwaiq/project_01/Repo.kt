@@ -5,6 +5,8 @@ import android.content.Context
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
@@ -21,10 +23,7 @@ import sa.edu.tuwaiq.project_01.model.Users
 var fireStore : FirebaseFirestore = FirebaseFirestore.getInstance()
 class Repo(val context: Context) {
 
-
-
-
-
+    val myID = FirebaseAuth.getInstance().currentUser?.uid
 
     //logIn
     fun logInAuthentication(emailSignIn: String,passwordSignIn: String,view: View) {
@@ -114,24 +113,34 @@ class Repo(val context: Context) {
             }
         }
     }
-/*
-    fun signUpAuthentication(emailSignIn: String,userName: String,view: View) {
 
-        val email: String = emailSignIn.toString().trim { it <= ' ' }
-        val password: String = userName.toString().trim { it <= ' ' }
+    //--Profile--
+    fun getUserInfo(userID: String,userInfo :Users): LiveData<Users> {
+        val user = MutableLiveData<Users>()
+        fireStore.collection("Users").document("$userID")
+            .get().addOnCompleteListener { it
 
-        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Navigation.findNavController(view).navigate(sa.edu.tuwaiq.project_01.R.id.action_loginFragment_to_timeLineFragment)
+                if (it.result?.exists()!!) {
+                    userInfo.userName = it.result!!.getString("userName").toString()
+                    userInfo.userEmail = it.result!!.getString("userEmail").toString()
+                    userInfo.bio = it.result!!.getString("bio").toString()
                 } else {
-                    Toast.makeText(view.context, task.exception!!.message.toString(), Toast.LENGTH_LONG).show()
-
                 }
+                user.value= userInfo
             }
+        return user
+    }
+
+
+    fun upDateUserInfo(editUserName: String, editUserBio: String) {
+        val upDateUserData = Firebase.firestore.collection("Users")
+        upDateUserData.document(myID.toString()).update(
+            "userName", editUserName, "bio",editUserBio)
+
     }
 
 
 
- */
+
+
 }

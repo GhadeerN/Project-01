@@ -1,8 +1,11 @@
 package sa.edu.tuwaiq.project_01
 
+import android.app.Activity
 import android.content.Intent
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -11,6 +14,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import sa.edu.tuwaiq.project_01.databinding.ActivityMainBinding
 import sa.edu.tuwaiq.project_01.util.BottomAppBarHelper
 import sa.edu.tuwaiq.project_01.views.AddPostActivity
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -23,6 +27,19 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+        //------------------------------------------------------------------------------------
+        val sharedPreferencesSettings = this.getSharedPreferences("preference", Activity.MODE_PRIVATE)
+        val language = sharedPreferencesSettings.getString("preference", "")
+
+        if (language.toString() == "ar") {
+            Toast.makeText(this, "arrrr", Toast.LENGTH_SHORT).show()
+            setLocate()
+        }else{
+          ///  Toast.makeText(this, "english", Toast.LENGTH_SHORT).show()
+
+        }
+
         // Initialize the bottom app helper to allow hiding/showing it on specific fragments
         BottomAppBarHelper.init(this)
 
@@ -32,7 +49,6 @@ class MainActivity : AppCompatActivity() {
 
         // This line is to disable the placeholder item in the bottom nav view. 1 -> placeholder item index
         binding.bottomNavigationView.menu.getItem(1).isEnabled = false
-
 
         // Navigation
         val navHostFragment =
@@ -48,6 +64,16 @@ class MainActivity : AppCompatActivity() {
         binding.addPostFloatingActionButton.setOnClickListener {
             startActivity(Intent(this, AddPostActivity::class.java))
         }
+    }
+
+    private fun setLocate() {
+        Toast.makeText(this, "ar", Toast.LENGTH_SHORT).show()
+        val locale = Locale("ar")
+        Locale.setDefault(locale)
+        val config = Configuration()
+        config.locale = locale
+        this.resources?.updateConfiguration(config, this.resources.displayMetrics)
+
     }
 
     // To activate the back button functionality
