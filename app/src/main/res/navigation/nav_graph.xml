@@ -19,8 +19,8 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="sa.edu.tuwaiq.project_01.views.identity.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
+        android:label="@string/login"
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
@@ -33,8 +33,8 @@
     <fragment
         android:id="@+id/signUpFragment"
         android:name="sa.edu.tuwaiq.project_01.views.identity.SignUpFragment"
-        android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_sign_up" >
+        android:label="@string/register"
+        tools:layout="@layout/fragment_sign_up">
         <action
             android:id="@+id/action_signUpFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
@@ -42,6 +42,6 @@
     <fragment
         android:id="@+id/settingsFragment"
         android:name="sa.edu.tuwaiq.project_01.views.identity.SettingsFragment"
-        android:label="fragment_settings"
+        android:label="@string/settings"
         tools:layout="@layout/fragment_settings" />
 </navigation>

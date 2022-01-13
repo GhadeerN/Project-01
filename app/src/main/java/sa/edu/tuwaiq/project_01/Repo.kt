@@ -182,6 +182,8 @@ class Repo(val context: Context) {
         return article
     }
 
+    // Get User personal posts
+    suspend fun getMyPosts() = postCollection.whereEqualTo("userId",myID).get().await()
 
 //-----------------------------------------------------------------
 

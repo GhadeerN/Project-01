@@ -65,6 +65,8 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        observer()
+
         val myID=FirebaseAuth.getInstance().currentUser?.uid
 
         //--------------User Photo-------------------------------------
@@ -73,7 +75,11 @@ class ProfileFragment : Fragment() {
         // Show the nav bar & the floating action bottom
         BottomAppBarHelper.get().show()
 
+        // Get my posts
+        profileViewModel.getMyPosts()
 
+        articleAdapter = TimeLineAdapter(requireContext(), timeLineViewModel)
+        binding.userRecyclerView.adapter = articleAdapter
 
         //----------------------getAllMyArticles-----------------------------------
 //        profileViewModel.getAllMyArticles(myID.toString(), articleList, viewLifecycleOwner)
@@ -197,4 +203,12 @@ class ProfileFragment : Fragment() {
     }
     //--------------------------------------------------------------------------------------
 
+    fun observer() {
+        profileViewModel.myPostsLiveData.observe(viewLifecycleOwner, {
+            it?.let {
+                articleAdapter.submitList(it)
+                profileViewModel.myPostsLiveData.postValue(null)
+            }
+        })
+    }
 }
