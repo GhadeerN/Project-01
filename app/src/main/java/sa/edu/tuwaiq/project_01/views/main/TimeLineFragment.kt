@@ -9,10 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import com.google.android.material.bottomappbar.BottomAppBar
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
-import sa.edu.tuwaiq.project_01.R
 import sa.edu.tuwaiq.project_01.databinding.FragmentTimeLineBinding
 import sa.edu.tuwaiq.project_01.util.BottomAppBarHelper
 import sa.edu.tuwaiq.project_01.views.adapters.TimeLineAdapter

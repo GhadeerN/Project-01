@@ -9,10 +9,8 @@ import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.LiveData
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.R
+import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -161,6 +159,31 @@ class Repo(val context: Context) {
             "userName", editUserName, "bio",editUserBio)
 
     }
+
+
+    fun getUserPosts(userID: String, postList: MutableList<Post>): LiveData<MutableList<Post>> {
+        val article = MutableLiveData<MutableList<Post>>()
+        fireStore.collection("Posts").whereEqualTo("userId", userID)
+            .addSnapshotListener(object : EventListener<QuerySnapshot> {
+                override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
+                    if (error != null) {
+                        Log.e("Firestore", error.message.toString())
+                        return
+                    }
+                    for (dc: DocumentChange in value?.documentChanges!!) {
+                        if (dc.type == DocumentChange.Type.ADDED) {
+                            postList.add(dc.document.toObject(Post::class.java))
+                        }
+                    }
+                    article.value = postList
+                }
+
+            })
+        return article
+    }
+
+
+//-----------------------------------------------------------------
 
 
 
