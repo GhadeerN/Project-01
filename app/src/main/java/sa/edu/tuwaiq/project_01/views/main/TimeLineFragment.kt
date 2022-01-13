@@ -59,9 +59,11 @@ class TimeLineFragment : Fragment() {
     fun observer() {
         timeLineViewModel.userInfoLiveData.observe(viewLifecycleOwner, {
             Log.d(TAG, "user: $it")
-            prefEditor.putString(it.userName, "")
-            prefEditor.putString(it.userImage, "")
+            prefEditor.putString(NAME, it.userName)
+            prefEditor.putString(IMAGE, it.userImage)
             prefEditor.commit()
+
+            Log.d(TAG, "username: ${sharedPreferences.getString(NAME, "")}")
         })
 
         timeLineViewModel.callPostsLiveData.observe(viewLifecycleOwner, {

@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Binder
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -28,6 +29,7 @@ import java.io.File
 
 const val IMAGE_PICKER = 0
 
+private const val TAG = "AddPostActivity"
 class AddPostActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddPostBinding
@@ -56,6 +58,12 @@ class AddPostActivity : AppCompatActivity() {
         // Hide the action bar
         supportActionBar?.hide()
 
+        // Close post page
+        binding.closePoatButton.setOnClickListener {
+            finish()
+        }
+
+        // Post
         binding.postButton.setOnClickListener {
             postContent = binding.postContentEditText.text.toString().trim()
             val fileName = System.currentTimeMillis().toString()
@@ -69,6 +77,9 @@ class AddPostActivity : AppCompatActivity() {
                 postViewModel.addPost(
                     Post(
                         postContent,
+                                "",
+                        sharedPreferences.getString(NAME, "")!!,
+                        sharedPreferences.getString(IMAGE, "")!!,
                         firebaseAuth.currentUser!!.uid
                     )
                 )
@@ -123,17 +134,17 @@ class AddPostActivity : AppCompatActivity() {
         postViewModel.uploadImageLiveData.observe(this, {
             it?.let {
 
+                Log.d(TAG, "File name: $it")
                 val imageUrl =
                     "https://firebasestorage.googleapis.com/v0/b/postly-c7ca0.appspot.com/o/imagesPosts%2F$it?alt=media&token=65c25c89-c84e-47af-a96e-7fea617515d0"
-
                 postViewModel.uploadImageLiveData.postValue(null)
 
                 postViewModel.addPost(
                     Post(
                         postContent,
                         imageUrl,
-                        sharedPreferences.getString(FILE_NAME, NAME)!!,
-                        sharedPreferences.getString(FILE_NAME, IMAGE) ?: "",
+                        sharedPreferences.getString(NAME, "")!!,
+                        sharedPreferences.getString(IMAGE, "")!!,
                         firebaseAuth.currentUser!!.uid,
                     )
                 )
@@ -145,7 +156,7 @@ class AddPostActivity : AppCompatActivity() {
                 progressDialog.dismiss()
                 postViewModel.postLiveData.postValue(null)
                 Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
-//                finish()
+                finish()
             }
         })
 

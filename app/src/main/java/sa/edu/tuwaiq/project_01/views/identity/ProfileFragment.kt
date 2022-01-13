@@ -3,6 +3,7 @@ package sa.edu.tuwaiq.project_01.views.identity
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
@@ -24,6 +25,7 @@ import sa.edu.tuwaiq.project_01.R
 import sa.edu.tuwaiq.project_01.databinding.FragmentProfileBinding
 import sa.edu.tuwaiq.project_01.model.Users
 import sa.edu.tuwaiq.project_01.util.BottomAppBarHelper
+import sa.edu.tuwaiq.project_01.views.main.IMAGE
 import java.io.File
 
 
@@ -35,6 +37,9 @@ class ProfileFragment : Fragment() {
         ViewModelProvider(this).get(ProfileViewModel::class.java)
     }
 
+    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var sharedPreEditor: SharedPreferences.Editor
+
     private lateinit var userInfo : Users
 
     lateinit var binding: FragmentProfileBinding
@@ -42,6 +47,9 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        sharedPreferences = requireActivity().getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
+        sharedPreEditor = sharedPreferences.edit()
+
         // Inflate the layout for this fragment
         binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
@@ -158,6 +166,9 @@ class ProfileFragment : Fragment() {
             val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
 
             binding.profileImage.load(localFile)
+
+            //TODO SHAared pref
+            sharedPreEditor.putString(IMAGE, localFile.toString()).commit()
 
         }.addOnFailureListener {
         }
