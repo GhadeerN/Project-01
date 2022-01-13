@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
+import com.bumptech.glide.Glide
 import sa.edu.tuwaiq.project_01.R
 import sa.edu.tuwaiq.project_01.databinding.PostItemLayoutBinding
 import sa.edu.tuwaiq.project_01.model.Post
@@ -44,7 +45,8 @@ class TimeLineAdapter(val context: Context, viewModel: TimeLineViewModel) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = differ.currentList[position]
-        TODO("bind view with data")
+        holder.bind(item)
+//        holder.binding.itemPostImage.load()
     }
 
     override fun getItemCount(): Int {
@@ -54,7 +56,30 @@ class TimeLineAdapter(val context: Context, viewModel: TimeLineViewModel) :
     inner class ViewHolder(val binding: PostItemLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
             fun bind(post: Post) {
-                binding.itemName.text = post.
+                val userImage = post.userImage
+                val postImage = post.postImage
+
+                binding.itemName.text = post.username
+                binding.itemPostContent.text = post.postContent
+
+                if (userImage.isNotBlank()) {
+                    Glide.with(context).load(userImage)
+                        .placeholder(R.drawable.ic_outline_account_circle_24)
+                        .into(binding.itemUserImage)
+                } else
+                    binding.itemUserImage.setImageResource(R.drawable.ic_outline_account_circle_24)
+
+                if (postImage.isNotBlank()) {
+                    binding.itemPostImage.visibility = View.VISIBLE
+                    Glide.with(context).load(postImage)
+                        .placeholder(R.drawable.ic_outline_account_circle_24)
+                        .into(binding.itemPostImage)
+
+//                    binding.itemPostImage.
+
+                    Log.d(TAG, "post image: $postImage")
+                } else
+                    binding.itemPostImage.visibility = View.GONE
             }
     }
 }

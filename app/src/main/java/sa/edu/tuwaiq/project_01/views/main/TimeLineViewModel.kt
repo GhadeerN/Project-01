@@ -11,6 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import sa.edu.tuwaiq.project_01.Repo
 import sa.edu.tuwaiq.project_01.model.Post
+import sa.edu.tuwaiq.project_01.model.Users
 import java.lang.Exception
 
 private const val TAG = "TimeLineViewModel"
@@ -20,7 +21,9 @@ class TimeLineViewModel(context: Application): AndroidViewModel(context)  {
     val callPostsLiveData = MutableLiveData<List<Post>>()
     val callPostsErrorLiveData = MutableLiveData<String>()
     val selectedPostLiveData = MutableLiveData<Post>()
-    val postsList = mutableListOf<Post>()
+    var postsList = mutableListOf<Post>()
+
+    var userInfoLiveData = MutableLiveData<Users>()
 
     fun callPosts() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -41,9 +44,22 @@ class TimeLineViewModel(context: Application): AndroidViewModel(context)  {
                 }
 
                 callPostsLiveData.postValue(postsList)
+                postsList = mutableListOf()
 
             } catch (e: Exception) {
                 Log.d(TAG, "Error - catch: ${e.message}")
+                callPostsErrorLiveData.postValue(e.message)
+            }
+        }
+    }
+
+    fun getUserInfo(userId: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val response = repo.getUserInfo(userId, Users())
+                userInfoLiveData = response as MutableLiveData<Users>
+
+            } catch (e: Exception) {
                 callPostsErrorLiveData.postValue(e.message)
             }
         }

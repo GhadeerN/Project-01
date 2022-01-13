@@ -1,7 +1,9 @@
 package sa.edu.tuwaiq.project_01.views
 
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Binder
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +21,9 @@ import sa.edu.tuwaiq.project_01.R
 import sa.edu.tuwaiq.project_01.databinding.ActivityAddPostBinding
 import sa.edu.tuwaiq.project_01.model.Post
 import sa.edu.tuwaiq.project_01.util.Permissions
+import sa.edu.tuwaiq.project_01.views.identity.FILE_NAME
+import sa.edu.tuwaiq.project_01.views.main.IMAGE
+import sa.edu.tuwaiq.project_01.views.main.NAME
 import java.io.File
 
 const val IMAGE_PICKER = 0
@@ -27,6 +32,7 @@ class AddPostActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddPostBinding
     private val postViewModel: AddPostViewModel by viewModels()
+    private lateinit var sharedPreferences: SharedPreferences
 
     private var imageUri: Uri? = null
     lateinit var postContent: String
@@ -38,6 +44,8 @@ class AddPostActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAddPostBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        sharedPreferences = this.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
 
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Loading...")
@@ -76,6 +84,7 @@ class AddPostActivity : AppCompatActivity() {
                         dialog.dismiss()
                     }.show()
             }
+//            finish()
         }
 
         binding.addImageImageButton.setOnClickListener {
@@ -113,6 +122,7 @@ class AddPostActivity : AppCompatActivity() {
     fun observer() {
         postViewModel.uploadImageLiveData.observe(this, {
             it?.let {
+
                 val imageUrl =
                     "https://firebasestorage.googleapis.com/v0/b/postly-c7ca0.appspot.com/o/imagesPosts%2F$it?alt=media&token=65c25c89-c84e-47af-a96e-7fea617515d0"
 
@@ -121,8 +131,10 @@ class AddPostActivity : AppCompatActivity() {
                 postViewModel.addPost(
                     Post(
                         postContent,
+                        imageUrl,
+                        sharedPreferences.getString(FILE_NAME, NAME)!!,
+                        sharedPreferences.getString(FILE_NAME, IMAGE) ?: "",
                         firebaseAuth.currentUser!!.uid,
-                        imageUrl
                     )
                 )
             }
@@ -133,7 +145,7 @@ class AddPostActivity : AppCompatActivity() {
                 progressDialog.dismiss()
                 postViewModel.postLiveData.postValue(null)
                 Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
-                finish()
+//                finish()
             }
         })
 

@@ -6,5 +6,4 @@ data class Users(
     var userEmail: String = "",
     var userImage: String = "",
     var bio :String =""
-
     )

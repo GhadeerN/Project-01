@@ -18,6 +18,7 @@ import sa.edu.tuwaiq.project_01.R
 import sa.edu.tuwaiq.project_01.databinding.FragmentLoginBinding
 import sa.edu.tuwaiq.project_01.util.BottomAppBarHelper
 
+const val FILE_NAME = "preference"
 class LoginFragment : Fragment() {
     lateinit var binding: FragmentLoginBinding
     val  loginViewModel by lazy {
@@ -112,10 +113,11 @@ class LoginFragment : Fragment() {
     }
 
     fun remembered() {
-        sharedPreferences = this.requireActivity().getSharedPreferences("preference", Context.MODE_PRIVATE)
+        sharedPreferences = this.requireActivity().getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
         isRemembered = sharedPreferences.getBoolean("CHECKBOX", false)
 
         if (isRemembered) {
             findNavController().navigate(R.id.action_loginFragment_to_timeLineFragment)
-        }    }
+        }
+    }
 }
