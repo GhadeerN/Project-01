@@ -15,6 +15,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
 import androidx.navigation.fragment.findNavController
@@ -51,7 +52,7 @@ class SettingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
         //---------------------Switch Dark Mode----------------------------------------------------
         binding.switchDarkMode.isChecked = sharedPreferences.getBoolean("MODE", false)
         binding.switchDarkMode.setOnCheckedChangeListener { _, isChecked ->
