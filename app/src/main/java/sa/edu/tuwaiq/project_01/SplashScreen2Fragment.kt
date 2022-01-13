@@ -9,6 +9,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import sa.edu.tuwaiq.project_01.util.BottomAppBarHelper
+import androidx.appcompat.app.AppCompatActivity
+
+
+
 
 
 class SplashScreen2Fragment : Fragment() {
@@ -27,6 +31,8 @@ class SplashScreen2Fragment : Fragment() {
         // Hide the nav bar & the floating action bottom
         BottomAppBarHelper.get().hide()
 
+//        requireActivity().supportActionBar?.hide()
+        (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
 
         Handler().postDelayed({
             findNavController().navigate(R.id.action_splashScreen2Fragment_to_loginFragment)
