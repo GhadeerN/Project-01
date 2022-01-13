@@ -37,12 +37,10 @@ class SettingsFragment : Fragment() {
     }
 
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View?{
+    ): View? {
 
         // Inflate the layout for this fragment
         binding = FragmentSettingsBinding.inflate(inflater, container, false)
@@ -54,9 +52,8 @@ class SettingsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-
         //---------------------Switch Dark Mode----------------------------------------------------
-        binding.switchDarkMode.isChecked =sharedPreferences.getBoolean("MODE",false)
+        binding.switchDarkMode.isChecked = sharedPreferences.getBoolean("MODE", false)
         binding.switchDarkMode.setOnCheckedChangeListener { _, isChecked ->
 
             if (isChecked) {
@@ -65,7 +62,7 @@ class SettingsFragment : Fragment() {
 
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
-            sharedPreferences.edit().putBoolean("MODE",isChecked).apply()
+            sharedPreferences.edit().putBoolean("MODE", isChecked).apply()
         }
 
         binding.cardUserProfile.setOnClickListener {
@@ -77,7 +74,7 @@ class SettingsFragment : Fragment() {
         binding.buttonLogOutXml.setOnClickListener {
 
             showDialogLogout()
-            }
+        }
 
         binding.changeLanguage.setOnClickListener {
             bottomSheetChangeLanguage()
@@ -93,9 +90,9 @@ class SettingsFragment : Fragment() {
 
     fun showDialogLogout() {
         val builder = android.app.AlertDialog.Builder(context)
-        builder.setTitle("Logout!!!")
-        builder.setIcon(R.drawable.ic_baseline_arrow_drop_up_24)
-        builder.setMessage("Are You Sure you want to logout ?")
+        builder.setTitle("Logout")
+//        builder.setIcon(R.drawable.ic_baseline_arrow_drop_up_24)
+        builder.setMessage("Are you sure you want to logout?")
 
         builder.setPositiveButton("Logout") { _, _ ->
             signOut()
@@ -115,13 +112,13 @@ class SettingsFragment : Fragment() {
         var radioGroup = view.findViewById<RadioGroup>(R.id.radioGroup)
 
         radioGroup.setOnCheckedChangeListener { group, checkedId ->
-            var selectedLanguage: RadioButton =view.findViewById(checkedId)
+            var selectedLanguage: RadioButton = view.findViewById(checkedId)
 
             btnChangeLanguage.setOnClickListener {
-                if (selectedLanguage.text.toString()=="عربي"){
+                if (selectedLanguage.text.toString() == "عربي") {
                     setLocale("ar")
-                }else if (selectedLanguage.text.toString()=="English"){
-                   setLocale("en")
+                } else if (selectedLanguage.text.toString() == "English") {
+                    setLocale("en")
                 }
             }
         }
@@ -202,7 +199,8 @@ class SettingsFragment : Fragment() {
                     user?.reauthenticate(credential)
                         ?.addOnCompleteListener {
                             if (it.isSuccessful) {
-                                Toast.makeText(context, "Auth Successful ", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, "Auth Successful ", Toast.LENGTH_SHORT)
+                                    .show()
 
                                 user.updatePassword("${newPassword.toString()}")
                                     .addOnCompleteListener { task ->
@@ -213,8 +211,8 @@ class SettingsFragment : Fragment() {
                                             ).show()
 
                                             // view?.etOldPassword_xml?.setText("")
-                                          //  view?.etConfirmNewPassword_xml?.setText("")
-                                           // view?.etNewPassword_xml?.setText("")
+                                            //  view?.etConfirmNewPassword_xml?.setText("")
+                                            // view?.etNewPassword_xml?.setText("")
                                         }
                                     }
                             } else {

@@ -85,18 +85,24 @@
 
           </com.google.android.material.textfield.TextInputLayout>
 
-          <TextView
-              android:id="@+id/forget_password_textView"
+          <LinearLayout
               android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:gravity="right"
-              android:text="@string/forget_password" />
+              android:layout_height="match_parent"
+              android:orientation="horizontal">
 
-          <CheckBox
-              android:id="@+id/rememberMe"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:text="Remember Me" />
+              <CheckBox
+                  android:id="@+id/rememberMe"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="Remember Me" />
+
+              <TextView
+                  android:id="@+id/forget_password_textView"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:gravity="right"
+                  android:text="@string/forget_password" />
+          </LinearLayout>
 
           <Button
               android:id="@+id/login_button"

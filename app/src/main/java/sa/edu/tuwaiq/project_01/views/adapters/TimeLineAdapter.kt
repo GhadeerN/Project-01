@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import sa.edu.tuwaiq.project_01.R
 import sa.edu.tuwaiq.project_01.databinding.PostItemLayoutBinding
 import sa.edu.tuwaiq.project_01.model.Post
@@ -72,6 +73,8 @@ class TimeLineAdapter(val context: Context, viewModel: TimeLineViewModel) :
                 if (postImage.isNotBlank()) {
                     binding.itemPostImage.visibility = View.VISIBLE
                     Glide.with(context).load(postImage)
+                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                        .skipMemoryCache(true)
                         .placeholder(R.drawable.ic_outline_account_circle_24)
                         .into(binding.itemPostImage)
 

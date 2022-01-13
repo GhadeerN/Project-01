@@ -19,7 +19,7 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="sa.edu.tuwaiq.project_01.views.identity.LoginFragment"
-        android:label="@string/login"
+        android:label="@string/profile"
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_signUpFragment"
