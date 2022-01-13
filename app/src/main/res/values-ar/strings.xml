@@ -1,2 +1,45 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">Postly</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login_greeting">مرحبا بك مجددا 👋🏽</string>
+    <string name="login_user_msg">Let\'s start a new jorney with Postly</string>
+    <string name="email">البريد الألكتروني</string>
+    <string name="password">كلمة المرور</string>
+    <string name="forget_password">نسيت كلمة المرور؟</string>
+    <string name="login">تسجيل دخول</string>
+    <string name="question_dont_have_account">ليس لديك حساب ؟</string>
+    <string name="register">حساب جديد</string>
+    <string name="register_user_msg">Join us in Postly and check what\'s new!</string>
+    <string name="register_greeting">مرحبا بك </string>
+    <string name="register_full_name">الاسم </string>
+    <string name="confirm_password">تأكيد كلمة المرور</string>
+    <string name="question_already_have_account">هل تملك حساب ؟</string>
+    <string name="home">الرئسية</string>
+    <string name="profile">الملف الشخصي</string>
+    <string name="whats_happening_msg">هل من جديد(:</string>
+    <string name="supporting_text">You don\'t have content to post yet\nPlease create one before posting</string>
+    <string name="ok">حسنا</string>
+    <string name="post">نشر</string>
+    <string name="settings">الإعدادات</string>
+    <string name="logout">تسجيل خروج</string>
+    <string name="view_profile">عرض ملفك الشخصي</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="remember_me">تذكرني</string>
+    <string name="edit_profile">تعديل الملف الشخصي</string>
+    <string name="change_language">تغير كلمة المرور</string>
+    <string name="dark_mode">النمط</string>
+    <string name="update_your_information">تحديث بياناتك</string>
+    <string name="user_name">اسم المستخدم </string>
+    <string name="edit">تعديل</string>
+    <string name="enter_old_password">كلمة المرور القديمة</string>
+    <string name="enter_new_password">كلمة المرور الجديدة</string>
+    <string name="confirm_new_password">تأكيد كلمة المرور</string>
+    <string name="change_password">تغير كلمة المرور</string>
+    <string name="areyousureyouwanttologout">هل انت متأكيد من تسجيل الخروج؟</string>
+    <string name="cancel">الغاء</string>
+    <string name="save_changed">حفظ التغيرات</string>
+
+
+</resources>

@@ -94,7 +94,7 @@
                   android:id="@+id/rememberMe"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                  android:text="Remember Me" />
+                  android:text="@string/remember_me" />
 
               <TextView
                   android:id="@+id/forget_password_textView"

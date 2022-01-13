@@ -90,14 +90,14 @@ class SettingsFragment : Fragment() {
 
     fun showDialogLogout() {
         val builder = android.app.AlertDialog.Builder(context)
-        builder.setTitle("Logout")
-//        builder.setIcon(R.drawable.ic_baseline_arrow_drop_up_24)
-        builder.setMessage("Are you sure you want to logout?")
+        builder.setTitle(getString(R.string.login))
+        builder.setIcon(R.drawable.ic_baseline_logout_24)
+        builder.setMessage(getString(R.string.areyousureyouwanttologout))
 
-        builder.setPositiveButton("Logout") { _, _ ->
+        builder.setPositiveButton(getString(R.string.login)) { _, _ ->
             signOut()
         }
-        builder.setNegativeButton("Cancel", { _, _ -> })
+        builder.setNegativeButton(getString(R.string.cancel), { _, _ -> })
 
         builder.show()
     }
