@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import coil.load
 import com.google.android.material.bottomappbar.BottomAppBar
@@ -23,8 +24,11 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import sa.edu.tuwaiq.project_01.R
 import sa.edu.tuwaiq.project_01.databinding.FragmentProfileBinding
+import sa.edu.tuwaiq.project_01.model.Post
 import sa.edu.tuwaiq.project_01.model.Users
 import sa.edu.tuwaiq.project_01.util.BottomAppBarHelper
+import sa.edu.tuwaiq.project_01.views.adapters.TimeLineAdapter
+import sa.edu.tuwaiq.project_01.views.main.TimeLineViewModel
 import sa.edu.tuwaiq.project_01.views.main.IMAGE
 import java.io.File
 
@@ -33,6 +37,9 @@ class ProfileFragment : Fragment() {
 
     private lateinit var imageUrl: Uri
 
+    private lateinit var articleList: MutableList<Post>
+    private lateinit var articleAdapter: TimeLineAdapter
+    private val timeLineViewModel: TimeLineViewModel by activityViewModels()
     val profileViewModel by lazy {
         ViewModelProvider(this).get(ProfileViewModel::class.java)
     }
@@ -65,6 +72,21 @@ class ProfileFragment : Fragment() {
 
         // Show the nav bar & the floating action bottom
         BottomAppBarHelper.get().show()
+
+
+
+        //----------------------getAllMyArticles-----------------------------------
+//        profileViewModel.getAllMyArticles(myID.toString(), articleList, viewLifecycleOwner)
+//            .observe(viewLifecycleOwner, {
+//                articleAdapter = TimeLineAdapter(requireContext(), timeLineViewModel)
+//                binding.userRecyclerView.adapter = articleAdapter
+//
+//                articleAdapter.submitList(it)
+//
+//               // binding.numberOrArticle.setText(articleList.size.toString())
+//                articleAdapter.notifyDataSetChanged()
+//            })
+
 
 
 

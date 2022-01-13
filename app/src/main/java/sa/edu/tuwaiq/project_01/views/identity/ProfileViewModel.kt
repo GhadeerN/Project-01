@@ -5,6 +5,7 @@ import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import sa.edu.tuwaiq.project_01.Repo
+import sa.edu.tuwaiq.project_01.model.Post
 import sa.edu.tuwaiq.project_01.model.Users
 
 
@@ -30,4 +31,19 @@ class ProfileViewModel(context:Application):AndroidViewModel(context) {
             repo.upDateUserInfo(editUserName,editUserBio)
         }
     }
+
+
+    fun getAllMyArticles(myID: String, articleList: MutableList<Post>, viewLifecycleOwner: LifecycleOwner): LiveData<MutableList<Post>> {
+        // val userPosts = repo.getUserPosts(myID, articleList)
+        val myArticles = MutableLiveData<MutableList<Post>>()
+        repo.getUserPosts(myID, articleList).observe(viewLifecycleOwner, {
+            myArticles.postValue(it)
+
+        })
+        return myArticles
+    }
+
+
+
+
 }
