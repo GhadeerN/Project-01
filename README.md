@@ -26,7 +26,7 @@ The user shall be able to view all the posts from different users (Timeline) Use
 - View binding
 
 ## **Final App 🎉**
-
+![Tuwaiq Academy Logo](https://d.top4top.io/p_220499tj70.jpg)
 
 
 
