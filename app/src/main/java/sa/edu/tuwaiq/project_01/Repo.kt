@@ -6,6 +6,8 @@ import android.net.Uri
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
@@ -22,8 +24,7 @@ import kotlinx.coroutines.withContext
 import sa.edu.tuwaiq.project_01.model.Post
 import sa.edu.tuwaiq.project_01.model.Users
 
-var fireStore: FirebaseFirestore = FirebaseFirestore.getInstance()
-
+var fireStore : FirebaseFirestore = FirebaseFirestore.getInstance()
 class Repo(val context: Context) {
     private val database = FirebaseFirestore.getInstance()
     private val imageRef = Firebase.storage.reference
@@ -32,8 +33,10 @@ class Repo(val context: Context) {
     private val postCollection = database.collection("Posts")
 
 
+    val myID = FirebaseAuth.getInstance().currentUser?.uid
+
     //logIn
-    fun logInAuthentication(emailSignIn: String, passwordSignIn: String, view: View) {
+    fun logInAuthentication(emailSignIn: String,passwordSignIn: String,view: View) {
 
         val email: String = emailSignIn.toString().trim { it <= ' ' }
         val password: String = passwordSignIn.toString().trim { it <= ' ' }
@@ -53,6 +56,7 @@ class Repo(val context: Context) {
                 }
             }
     }
+
 
 
     //class Firebase
@@ -104,16 +108,13 @@ class Repo(val context: Context) {
             val userRef = Firebase.firestore.collection("Users")
             //-----------UID------------------------
 
-            userRef.document("${user.userID}").set(user).addOnCompleteListener {
-                it
-                when {
-                    it.isSuccessful -> {
+            userRef.document("${user.userID}").set(user).addOnCompleteListener { it
+                when {it.isSuccessful -> {
 
-                        Navigation.findNavController(view)
-                            .navigate(sa.edu.tuwaiq.project_01.R.id.action_signUpFragment_to_loginFragment)
+                    Navigation.findNavController(view).navigate(sa.edu.tuwaiq.project_01.R.id.action_signUpFragment_to_loginFragment)
 
-                        Toast.makeText(context, "Welcome", Toast.LENGTH_LONG).show()
-                    }
+                    Toast.makeText(context, "Welcome", Toast.LENGTH_LONG).show()
+                }
                     else -> {
                         Toast.makeText(context, "is not Successful", Toast.LENGTH_LONG)
                             .show()
@@ -135,24 +136,34 @@ class Repo(val context: Context) {
         imageRef.child("imagesPosts/$fileName").putFile(image)
 
     suspend fun getPosts() = postCollection.get().await()
-/*
-    fun signUpAuthentication(emailSignIn: String,userName: String,view: View) {
 
-        val email: String = emailSignIn.toString().trim { it <= ' ' }
-        val password: String = userName.toString().trim { it <= ' ' }
+    //--Profile--
+    fun getUserInfo(userID: String,userInfo :Users): LiveData<Users> {
+        val user = MutableLiveData<Users>()
+        fireStore.collection("Users").document("$userID")
+            .get().addOnCompleteListener { it
 
-        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Navigation.findNavController(view).navigate(sa.edu.tuwaiq.project_01.R.id.action_loginFragment_to_timeLineFragment)
+                if (it.result?.exists()!!) {
+                    userInfo.userName = it.result!!.getString("userName").toString()
+                    userInfo.userEmail = it.result!!.getString("userEmail").toString()
+                    userInfo.bio = it.result!!.getString("bio").toString()
                 } else {
-                    Toast.makeText(view.context, task.exception!!.message.toString(), Toast.LENGTH_LONG).show()
-
                 }
+                user.value= userInfo
             }
+        return user
+    }
+
+
+    fun upDateUserInfo(editUserName: String, editUserBio: String) {
+        val upDateUserData = Firebase.firestore.collection("Users")
+        upDateUserData.document(myID.toString()).update(
+            "userName", editUserName, "bio",editUserBio)
+
     }
 
 
 
- */
+
+
 }

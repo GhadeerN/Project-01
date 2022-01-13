@@ -87,12 +87,9 @@ class SignUpFragment : Fragment() {
                         sigUpViewModel.signUp(
                             binding.registerEmail.text.toString(),
                             binding.registerPassword.text.toString(),
-                            binding.registerFullName.text.toString(), view!!
+                            binding.registerFullName.text.toString(), requireView()
                         )
-//                    registerUser(
-//                        "${binding.registerEmail.text.toString()}",
-//                        "${binding.registerPassword.text.toString()}"
-//                    )
+
                     }
 
                 } else {
@@ -104,79 +101,5 @@ class SignUpFragment : Fragment() {
         }
 
     }
-
-
-
-
-//    //class Firebase
-//    fun registerUser(email: String, password: String) {
-//
-//        //delete
-//        val email: String = email.toString().trim { it <= ' ' }
-//        val password: String = password.toString().trim { it <= ' ' }
-//
-//        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
-//            .addOnCompleteListener { task ->
-//
-//                if (task.isSuccessful) {
-//
-//                   userInfo("${email.toString()}", "${binding.registerFullName.text.toString()}")
-//
-//                } else {
-//
-//                    Toast.makeText(context, task.exception!!.message.toString(), Toast.LENGTH_LONG)
-//                        .show()
-//
-//
-//                }
-//            }.addOnCompleteListener {}
-//
-//
-//    }
-//
-//
-//    //class
-//    fun userInfo(email: String, userName: String) {
-//
-//        val userId = FirebaseAuth.getInstance().currentUser?.uid
-//
-//        val user = Users()
-//        user.userID = userId.toString()
-//        user.userEmail = email
-//        user.userName = userName
-//
-//        createUserFirestore(user)
-//    }
-//
-//
-//    //firebase class
-//    @SuppressLint("LongLogTag")
-//    fun createUserFirestore(user:Users) = CoroutineScope(Dispatchers.IO).launch {
-//
-//        try {
-//            val userRef = Firebase.firestore.collection("Users")
-//            //-----------UID------------------------
-//
-//            userRef.document("${user.userID}").set(user).addOnCompleteListener { it
-//                when {it.isSuccessful -> {
-//
-//                    findNavController().navigate(R.id.action_signUpFragment_to_loginFragment)
-//
-//                    Toast.makeText(context, "Welcome", Toast.LENGTH_LONG).show()
-//                    }
-//                    else -> {
-//                        Toast.makeText(context, "is not Successful", Toast.LENGTH_LONG)
-//                            .show()
-//                    }
-//                }
-//            }
-//
-//        } catch (e: Exception) {
-//            withContext(Dispatchers.Main) {
-//                Log.e("FUNCTION createUserFirestore", "${e.message}")
-//            }
-//        }
-//    }
-//
 
 }

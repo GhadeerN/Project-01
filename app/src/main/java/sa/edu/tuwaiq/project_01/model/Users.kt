@@ -5,4 +5,6 @@ data class Users(
     var userName: String = "",
     var userEmail: String = "",
     var userImage: String = "",
+    var bio :String =""
+
     )
