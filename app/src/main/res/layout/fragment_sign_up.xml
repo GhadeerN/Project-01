@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".views.identity.SignUpFragment">
 
+
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="0dp"
@@ -23,7 +24,7 @@
         <View
             android:id="@+id/view"
             android:layout_width="match_parent"
-            android:layout_height="39dp" />
+            android:layout_height="1dp" />
 
         <TextView
             android:id="@+id/textView"
@@ -110,7 +111,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:hint="@string/confirm_password"
             app:endIconMode="password_toggle"
             app:helperTextTextColor="#FF0000"
@@ -129,7 +130,7 @@
             android:id="@+id/register_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:layout_marginBottom="18dp"
             android:text="@string/register" />
 
@@ -155,4 +156,5 @@
         </LinearLayout>
 
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
