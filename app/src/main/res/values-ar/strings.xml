@@ -28,7 +28,7 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="remember_me">تذكرني</string>
     <string name="edit_profile">تعديل الملف الشخصي</string>
-    <string name="change_language">تغير كلمة المرور</string>
+    <string name="change_language">تغير اللغة</string>
     <string name="dark_mode">النمط</string>
     <string name="update_your_information">تحديث بياناتك</string>
     <string name="user_name">اسم المستخدم </string>
