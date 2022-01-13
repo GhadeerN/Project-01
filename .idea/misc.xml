@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Bojsl/Project-01/app/src/main/res/layout/activity_add_post.xml" value="0.234375" />
+        <entry key="..\:/Users/Bojsl/Project-01/app/src/main/res/layout/activity_main.xml" value="0.234375" />
+        <entry key="..\:/Users/Bojsl/Project-01/app/src/main/res/layout/change_langauge.xml" value="0.234375" />
+        <entry key="..\:/Users/Bojsl/Project-01/app/src/main/res/layout/change_password_bottom_sheet.xml" value="0.234375" />
+        <entry key="..\:/Users/Bojsl/Project-01/app/src/main/res/layout/dialog_forgot_password.xml" value="0.234375" />
+        <entry key="..\:/Users/Bojsl/Project-01/app/src/main/res/layout/edit_user_information.xml" value="0.234375" />
+        <entry key="..\:/Users/Bojsl/Project-01/app/src/main/res/layout/fragment_login.xml" value="0.264" />
+        <entry key="..\:/Users/Bojsl/Project-01/app/src/main/res/layout/fragment_profile.xml" value="0.264" />
+        <entry key="..\:/Users/Bojsl/Project-01/app/src/main/res/layout/fragment_settings.xml" value="0.264" />
+        <entry key="..\:/Users/Bojsl/Project-01/app/src/main/res/layout/fragment_sign_up.xml" value="0.25" />
+        <entry key="..\:/Users/Bojsl/Project-01/app/src/main/res/layout/fragment_splash_screen.xml" value="0.234375" />
+        <entry key="..\:/Users/Bojsl/Project-01/app/src/main/res/layout/fragment_splash_screen2.xml" value="0.1" />
+        <entry key="..\:/Users/Bojsl/Project-01/app/src/main/res/layout/fragment_time_line.xml" value="0.234375" />
+        <entry key="..\:/Users/Bojsl/Project-01/app/src/main/res/layout/post_item_layout.xml" value="0.264" />
+        <entry key="..\:/Users/Bojsl/Project-01/app/src/main/res/layout/profile_post_item_layout.xml" value="0.234375" />
+        <entry key="..\:/Users/Bojsl/Project-01/app/src/main/res/layout/up_date_user_information.xml" value="0.234375" />
+        <entry key="..\:/Users/Bojsl/Project-01/app/src/main/res/menu/bottom_nav_menu.xml" value="0.234375" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
