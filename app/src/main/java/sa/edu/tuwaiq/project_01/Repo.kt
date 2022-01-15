@@ -128,7 +128,7 @@ class Repo(val context: Context) {
     }
 
     // Posts ---------------------------------------------------------------------------------------
-    fun addPost(post: Post) = postCollection.document().set(post)
+    fun addPost(post: Post) = postCollection.document(post.postID).set(post)
 
     fun uploadPostImage(image: Uri, fileName: String) =
         imageRef.child("imagesPosts/$fileName").putFile(image)

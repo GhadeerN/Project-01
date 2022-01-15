@@ -33,10 +33,8 @@ class MainActivity : AppCompatActivity() {
         val language = sharedPreferencesSettings.getString("preference", "")
 
         if (language.toString() == "ar") {
-            Toast.makeText(this, "arrrr", Toast.LENGTH_SHORT).show()
             setLocate()
         }else{
-          ///  Toast.makeText(this, "english", Toast.LENGTH_SHORT).show()
 
         }
 

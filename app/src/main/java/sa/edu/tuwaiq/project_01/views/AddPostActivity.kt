@@ -80,7 +80,7 @@ class AddPostActivity : AppCompatActivity() {
                                 "",
                         sharedPreferences.getString(NAME, "")!!,
                         sharedPreferences.getString(IMAGE, "")!!,
-                        firebaseAuth.currentUser!!.uid
+                        firebaseAuth.currentUser!!.uid,
                     )
                 )
             }
