@@ -157,7 +157,7 @@ class LoginFragment : Fragment() {
         isRemembered = sharedPreferences.getBoolean("CHECKBOX", false)
 
         if (isRemembered) {
-            findNavController().navigate(R.id.action_loginFragment_to_timeLineFragment)
+            findNavController().navigate(R.id.tabBarFragment)
         }
     }
 }

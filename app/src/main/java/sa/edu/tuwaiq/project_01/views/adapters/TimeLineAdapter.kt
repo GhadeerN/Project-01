@@ -30,7 +30,6 @@ class TimeLineAdapter(val context: Context, viewModel: TimeLineViewModel) :
             Log.d(TAG, "areItemsTheSame")
             return oldItem.postImage == newItem.postImage
         }
-
         override fun areContentsTheSame(oldItem: Post, newItem: Post): Boolean {
             return oldItem == newItem
         }
@@ -54,11 +53,6 @@ class TimeLineAdapter(val context: Context, viewModel: TimeLineViewModel) :
         holder.bind(item)
 
 //        holder.binding.itemPostImage.load()
-
-
-
-
-
 
     }
 

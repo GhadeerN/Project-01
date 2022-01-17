@@ -25,10 +25,8 @@
             android:id="@+id/action_loginFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
         <action
-            android:id="@+id/action_loginFragment_to_timeLineFragment"
-            app:destination="@id/timeLineFragment"
-            app:popUpTo="@id/timeLineFragment"
-            app:popUpToInclusive="true" />
+            android:id="@+id/action_loginFragment_to_tabBarFragment"
+            app:destination="@id/tabBarFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -59,5 +57,14 @@
             app:destination="@id/loginFragment"
             app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/tabBarFragment"
+        android:name="sa.edu.tuwaiq.project_01.views.main.TabBarFragment"
+        android:label="fragment_tab_bar"
+        tools:layout="@layout/fragment_tab_bar" >
+        <action
+            android:id="@+id/action_tabBarFragment_to_timeLineFragment"
+            app:destination="@id/timeLineFragment" />
     </fragment>
 </navigation>

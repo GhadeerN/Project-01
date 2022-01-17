@@ -53,6 +53,35 @@ class TimeLineViewModel(context: Application): AndroidViewModel(context)  {
         }
     }
 
+
+  /*  fun callFavorite() {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val response = repo.getFavorite()
+
+                for (document in response.documents) {
+                    val post = document.toObject<Post>()
+
+//                    if (item != null) {
+//                        item.documentId = document.id
+//                        Log.d(TAG, item.documentId)
+//                    }
+                    post?.let {
+                        postsList.add(it)
+                        Log.d(TAG, postsList.toString())
+                    }
+                }
+
+                callPostsLiveData.postValue(postsList)
+                postsList = mutableListOf()
+
+            } catch (e: Exception) {
+                Log.d(TAG, "Error - catch: ${e.message}")
+                callPostsErrorLiveData.postValue(e.message)
+            }
+        }
+    }
+*/
     fun getUserInfo(userId: String) {
         viewModelScope.launch(Dispatchers.IO) {
             try {

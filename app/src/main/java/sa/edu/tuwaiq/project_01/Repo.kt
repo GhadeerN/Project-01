@@ -26,12 +26,13 @@ var fireStore : FirebaseFirestore = FirebaseFirestore.getInstance()
 class Repo(val context: Context) {
     private val database = FirebaseFirestore.getInstance()
     private val imageRef = Firebase.storage.reference
+    private val myID = FirebaseAuth.getInstance().currentUser?.uid
 
     // Collections
     private val postCollection = database.collection("Posts")
 
+    private val favoriteCollection = database.collection("Users").document(myID.toString()).collection("Favorite")
 
-    val myID = FirebaseAuth.getInstance().currentUser?.uid
 
     //logIn
     fun logInAuthentication(emailSignIn: String,passwordSignIn: String,view: View) {
@@ -43,7 +44,7 @@ class Repo(val context: Context) {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Navigation.findNavController(view)
-                        .navigate(sa.edu.tuwaiq.project_01.R.id.action_loginFragment_to_timeLineFragment)
+                        .navigate(sa.edu.tuwaiq.project_01.R.id.action_tabBarFragment_to_timeLineFragment)
                 } else {
                     Toast.makeText(
                         view.context,
@@ -134,6 +135,7 @@ class Repo(val context: Context) {
         imageRef.child("imagesPosts/$fileName").putFile(image)
 
     suspend fun getPosts() = postCollection.get().await()
+   // suspend fun getFavorite() = favoriteCollection.get().await()
 
     //--Profile--
     fun getUserInfo(userID: String,userInfo :Users): LiveData<Users> {

@@ -81,21 +81,6 @@ class ProfileFragment : Fragment() {
         articleAdapter = TimeLineAdapter(requireContext(), timeLineViewModel)
         binding.userRecyclerView.adapter = articleAdapter
 
-        //----------------------getAllMyArticles-----------------------------------
-//        profileViewModel.getAllMyArticles(myID.toString(), articleList, viewLifecycleOwner)
-//            .observe(viewLifecycleOwner, {
-//                articleAdapter = TimeLineAdapter(requireContext(), timeLineViewModel)
-//                binding.userRecyclerView.adapter = articleAdapter
-//
-//                articleAdapter.submitList(it)
-//
-//               // binding.numberOrArticle.setText(articleList.size.toString())
-//                articleAdapter.notifyDataSetChanged()
-//            })
-
-
-
-
 
         //----------------------------getUserInformation-----------------------------------------------------------------
         userInfo= Users()
@@ -156,7 +141,6 @@ class ProfileFragment : Fragment() {
         intent.action = Intent.ACTION_GET_CONTENT
         startActivityForResult(intent, 100)
     }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -167,9 +151,7 @@ class ProfileFragment : Fragment() {
 
             upLoadImage()
         }
-
     }
-
     //repo or fire storage
     fun upLoadImage() {
         val myID=FirebaseAuth.getInstance().currentUser?.uid
@@ -183,7 +165,6 @@ class ProfileFragment : Fragment() {
             }.addOnFailureListener {
             }
     }
-
     fun getUserPhoto() {
         val imageName = "${FirebaseAuth.getInstance().currentUser?.uid}"
         val storageRef = FirebaseStorage.getInstance().reference
